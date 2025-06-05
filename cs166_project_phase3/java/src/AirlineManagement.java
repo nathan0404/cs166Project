@@ -275,6 +275,9 @@ public class AirlineManagement {
                 System.out.println("3. View Flight Status");
                 System.out.println("4. View Flights of the day");  
                 System.out.println("5. View Full Order ID History");
+                System.out.println("6. View Customer Info");
+                System.out.println("7. View Plane Info");
+                System.out.println("8. View Repairs History");
                 System.out.println(".........................");
                 System.out.println(".........................");
 
@@ -300,6 +303,10 @@ public class AirlineManagement {
                    case 4: feature4(esql); break;
                    case 5: feature5(esql); break;
                    case 6: feature6(esql); break;
+                   case 7: feature7(esql); break;
+                   case 8: feature8(esql); break;
+                   case 9: feature9(esql); break;
+                   case 10: feature10(esql); break;
 
 
 
@@ -365,18 +372,163 @@ public class AirlineManagement {
     * @return User login or null is the user does not exist
     **/
    public static String LogIn(AirlineManagement esql){
-      return null;
+      String input = "hi";
+      /* 
+      String input;
+      do {
+         System.out.println("\nEnter your name:");
+         try { // read the String, parse it and break.
+            input = in.readLine();
+            break;
+         }catch (Exception e) {
+            System.out.println("Your input is invalid!");
+            continue;
+         }//end try
+      }while (true);
+      System.out.println("login successful");
+      return input; */
+      return input;
    }//end
 
 // Rest of the functions definition go in here
+/*1. Given a flight number, get the flight’s schedule for the week
+• A flight may be scheduled on multiple days in a week
+10. Given a flight and a range of date (start date, end date), show the statistics of the flight:
+number of days the flight departed and arrived, number of sold and unsold tickets */
+   public static void feature1(AirlineManagement esql) {
+      try{
+         String query = "SELECT * FROM Flight";
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   /*2. Given a flight and a date, get (1) the number of seats still available and (2) number of seats
+sold */
+   public static void feature2(AirlineManagement esql) {
+      try{
+         System.out.println("Enter flight number in format (F***):");
+         String FlightNumber = in.readLine();
+         
+         System.out.println("Enter flight date in format (5/5/25):");
+         String Date = in.readLine();
+         
+         String query = "SELECT SeatsTotal, SeatsSold FROM FlightInstance " +
+                     "WHERE FlightNumber = '" + FlightNumber + "' AND FlightDate = '" + Date + "'";
 
-   public static void feature1(AirlineManagement esql) {}
-   public static void feature2(AirlineManagement esql) {}
-   public static void feature3(AirlineManagement esql) {}
-   public static void feature4(AirlineManagement esql) {}
-   public static void feature5(AirlineManagement esql) {}
-   public static void feature6(AirlineManagement esql) {}
-  
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+
+   /*3. Given a flight and date, find whether (1) the flight departed on time, and (2) arrived on time */
+   public static void feature3(AirlineManagement esql) {
+      try{
+       System.out.println("Enter flight number in format (F***):");
+         String FlightNumber = in.readLine();
+         
+         System.out.println("Enter flight date in format (5/5/25):");
+         String Date = in.readLine();
+         
+         String query = "SELECT DepartedOnTime, ArrivedOnTime FROM FlightInstance " +
+                     "WHERE FlightNumber = '" + FlightNumber + "' AND FlightDate = '" + Date + "'";
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+
+   /*4. Given a date, get all flights scheduled on that day 
+    * 
+    addd another query looking for past flights too
+   */
+   public static void feature4(AirlineManagement esql) {
+      try{
+         System.out.println("Enter day of the week in format (Monday):");
+         String DayOfWeek = in.readLine();
+         
+         String query = "SELECT * FROM Schedule " +
+                     "WHERE DayOfWeek = '" + DayOfWeek + "'";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   
+   /*5. Given a flight and date, get a list of passengers who (1) made reservations, (2) are on the
+waiting list, (3) actually flew on the flight (for flights already completed)  */
+   public static void feature5(AirlineManagement esql) {
+      try{
+       System.out.println("Enter flight number in format (F***):");
+         String FlightNumber = "F100"; //in.readLine();
+         
+         System.out.println("Enter flight date in format (5/5/25):");
+         String Date = "5/5/25"; //in.readLine();
+         
+         String query = "SELECT ReservationID,CustomerID,Status FROM Reservation " +
+               "WHERE FlightInstanceID = (" +
+               "SELECT FlightInstance.FlightInstanceID FROM FlightInstance " +
+               "WHERE FlightInstance.FlightNumber = '" + FlightNumber + "' " +
+               "AND FlightInstance.FlightDate = '" + Date + "')";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   /* 6. Given a reservation number, retrieve information about the travelers under that number
+• First & Last Name, Gender, Date of birth, Address, Phone number, Zip Code*/
+   public static void feature6(AirlineManagement esql) {
+      try{
+       System.out.println("Enter a Reservation number in format (R0001):");
+         String ReservationNum = "R0001"; //in.readLine();
+         
+         String query = "SELECT * FROM Customer " +
+               "WHERE CustomerID = (" +
+               "SELECT CustomerID FROM Reservation " +
+               "WHERE ReservationID = '" + ReservationNum + "')";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+
+   /*7. Given a plane number, get its make, model, age, and last repair date */
+   public static void feature7(AirlineManagement esql) {
+      try{
+       System.out.println("Enter a Plane number in format (PL001):");
+         String PlaneNum = "PL001"; //in.readLine();
+         
+         String query = "SELECT Make,Model,Year,LastRepairDate FROM Plane " +
+               "WHERE PlaneID = '" + PlaneNum + "'";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   /* 8. Given a maintenance technician ID, list all repairs made by that person */
+   public static void feature8(AirlineManagement esql) {
+      try{
+       System.out.println("Enter a Technician ID number in format (T001):");
+         String TechnicianID = "T001"; //in.readLine();
+         
+         String query = "SELECT RepairID,PlaneID,RepairCode,RepairDate FROM Repair " +
+               "WHERE TechnicianID = '" + TechnicianID + "'";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   /*9. Given a plane ID and a date range, list all the dates and the codes for repairs performed */
+   public static void feature9(AirlineManagement esql) {
+      
+   }
+   public static void feature10(AirlineManagement esql) {}
 
 
 }//end AirlineManagement
