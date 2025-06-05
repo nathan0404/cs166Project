@@ -13,7 +13,7 @@ assuming for number 10 of airline mangament, "number of days the flight departed
 where 1 is on time and 0 is not on time
 also assuming flight means flightNumber not ID, becuase ID is unique
 
-
+Assuming for Query 2 of Customers for finding Ticket Cost after given a Flight Number to provide all flights rather than submitting a specific date prior.
 example queries from lab 
 
    public static void QueryExample(EmbeddedSQL esql){
