@@ -282,16 +282,16 @@ public class AirlineManagement {
                 System.out.println(".........................");
 
                 //**the following functionalities should only be able to be used by customers**
-                System.out.println("10. Search Flights");
-                System.out.println(".........................");
-                System.out.println(".........................");
-
-                //**the following functionalities should ony be able to be used by Pilots**
-                System.out.println("15. Maintenace Request");
-                System.out.println(".........................");
-                System.out.println(".........................");
-
-               //**the following functionalities should ony be able to be used by Technicians**
+                System.out.println("10. Search Flights (Customer)");
+                System.out.println("11. Find Ticket Cost (Customer)");
+                System.out.println("12. Find Airplane Type (Customer)");
+                System.out.println("13. Make Reservation (Customer)");
+                //**the following functionalities should only be able to be used by Maintenance Staff**
+                System.out.println("14. List Repairs by Plane and Date Range (Maintenance Staff)");
+                System.out.println("15. List Maintenance Requests by Pilot (Maintenance Staff)");
+                System.out.println("16. Log Repair (Maintenance Staff)");
+                //**the following functionalities should only be able to be used by Pilots**
+                System.out.println("17. Make Maintenance Request (Pilot)");
                 System.out.println(".........................");
                 System.out.println(".........................");
 
@@ -307,10 +307,13 @@ public class AirlineManagement {
                    case 8: feature8(esql); break;
                    case 9: feature9(esql); break;
                    case 10: feature10(esql); break;
-
-
-
-
+                   case 11: feature11(esql); break;
+                   case 12: feature12(esql); break;
+                   case 13: feature13(esql); break;
+                   case 14: feature14(esql); break;
+                   case 15: feature15(esql); break;
+                   case 16: feature16(esql); break;
+                   case 17: feature17(esql); break;
                    case 20: usermenu = false; break;
                    default : System.out.println("Unrecognized choice!"); break;
                 }
@@ -391,7 +394,7 @@ public class AirlineManagement {
    }//end
 
 // Rest of the functions definition go in here
-/*1. Given a flight number, get the flight’s schedule for the week
+/*1. Given a flight number, get the flight's schedule for the week
 • A flight may be scheduled on multiple days in a week
 10. Given a flight and a range of date (start date, end date), show the statistics of the flight:
 number of days the flight departed and arrived, number of sold and unsold tickets */
@@ -530,6 +533,29 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    }
    public static void feature10(AirlineManagement esql) {}
 
-
+   public static void feature11(AirlineManagement esql) {
+       // Customer: Given a destination and departure city, find all flights on a given date
+   }
+   public static void feature12(AirlineManagement esql) {
+       // Customer: Given a flight number, find the ticket cost
+   }
+   public static void feature13(AirlineManagement esql) {
+       // Customer: Given a flight number, find the airplane type (make and model)
+   }
+   public static void feature14(AirlineManagement esql) {
+       // Customer: Make a reservation for a flight (and get on the waitlist if full)
+   }
+   public static void feature15(AirlineManagement esql) {
+       // Maintenance Staff: Given a plane ID and a date range, list all the dates and codes for repairs performed
+   }
+   public static void feature16(AirlineManagement esql) {
+       // Maintenance Staff: Given a pilot ID, list all maintenance requests made by the pilot
+   }
+   public static void feature17(AirlineManagement esql) {
+       // Maintenance Staff: After each repair, make an entry showing plane ID, repair code, and date of repair
+   }
+   public static void feature18(AirlineManagement esql) {
+       // Pilot: Make maintenance request listing plane ID, repair code requested, and date of request
+   }
 }//end AirlineManagement
 
