@@ -277,7 +277,9 @@ public class AirlineManagement {
                 System.out.println("5. View Full Order ID History");
                 System.out.println("6. View Customer Info");
                 System.out.println("7. View Plane Info");
-                System.out.println("8. View Repairs History");
+                System.out.println("8. View Technician Repair History");
+                System.out.println("9. View Plane Repair History");
+                System.out.println("10. View Flight Seat Statistics");
                 System.out.println(".........................");
                 System.out.println(".........................");
 
@@ -392,9 +394,7 @@ public class AirlineManagement {
 
 // Rest of the functions definition go in here
 /*1. Given a flight number, get the flight’s schedule for the week
-• A flight may be scheduled on multiple days in a week
-10. Given a flight and a range of date (start date, end date), show the statistics of the flight:
-number of days the flight departed and arrived, number of sold and unsold tickets */
+• A flight may be scheduled on multiple days in a week */
    public static void feature1(AirlineManagement esql) {
       try{
          String query = "SELECT * FROM Flight";
@@ -526,10 +526,78 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    }
    /*9. Given a plane ID and a date range, list all the dates and the codes for repairs performed */
    public static void feature9(AirlineManagement esql) {
-      
+      try{
+         System.out.println("Enter a Plane ID number in format (PL001):");
+         String PlaneID = "PL001"; //in.readLine();
+
+         System.out.println("Enter a Start Date in format (2025-04-09):");
+         String StartDate = "2025-04-03"; //in.readLine();
+
+         System.out.println("Enter a End Date in format (2025-04-09):");
+         String EndDate = "2025-04-10"; //in.readLine();
+         
+         String query = "SELECT RepairID,RepairCode,RepairDate FROM Repair " +
+               "WHERE PlaneID = '" + PlaneID + "' " +
+               "AND RepairDate BETWEEN '" + StartDate + "' AND '" + EndDate + "'";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
    }
-   public static void feature10(AirlineManagement esql) {}
+   /*10. Given a flight and a range of date (start date, end date), show the statistics of the flight:
+number of days the flight departed and arrived, number of sold and unsold tickets 
+FlightInstanceID,FlightNumber,FlightDate,DepartedOnTime,ArrivedOnTime,SeatsTotal,SeatsSold,NumOfStops,TicketCost*/
+   public static void feature10(AirlineManagement esql) {
+      try{
+         System.out.println("Enter a Plane ID number in format (F100):");
+         String FlightNumber = "F100"; //in.readLine();
+
+         System.out.println("Enter a Start Date in format (5/5/25):");
+         String StartDate = "5/5/25"; //in.readLine();
+
+         System.out.println("Enter a End Date in format (5/5/25):");
+         String EndDate = "6/1/25"; //in.readLine();
+         
+         String query = "SELECT " +
+                  "COUNT(CASE WHEN DepartedOnTime IS TRUE THEN 1 END) AS departed_on_time, " + 
+                  "COUNT(CASE WHEN ArrivedOnTime IS TRUE THEN 1 END) AS arrived_on_time, " +
+                  "SUM(SeatsSold) AS Total_Sold_Seats, " +
+                  "SUM(SeatsTotal - SeatsSold) AS Total_Unsold_Seats " +
+                  "FROM FlightInstance " +
+               "WHERE FlightNumber = '" + FlightNumber + "' " +
+               "AND FlightDate BETWEEN '" + StartDate + "' AND '" + EndDate + "'";
+
+         esql.executeQueryAndPrintResult(query);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   /*1. Given a destination and departure city, find all flights on a given date.
+• Must return departure and arrival time, number of stops scheduled, and on-time
+record (as a percentage)
+2. Given a flight number, find the ticket cost.
+3. Given a flight number, find the airplane type (make and model)
+4. Make a reservation for a flight
+• Get on the waitlist for a flight if the flight is full */
+   public static void feature11(AirlineManagement esql) {}
+   public static void feature12(AirlineManagement esql) {}
+   public static void feature13(AirlineManagement esql) {}
+   public static void feature14(AirlineManagement esql) {}
+
+   /*1. Given a plane ID and a date range, list all the dates and the codes for repairs performed
+pg. 4
+2. Given a pilot ID, list all maintenance requests made by the pilot
+3. After each repair, make an entry showing plane ID, repair code, and date of repair */
+   public static void feature21(AirlineManagement esql) {}
+   public static void feature22(AirlineManagement esql) {}
+   public static void feature23(AirlineManagement esql) {}
+   
+/*1. Make maintenance request listing plane ID, repair code requested, and date of request */
+   public static void feature31(AirlineManagement esql) {}
 
 
 }//end AirlineManagement
+
+
 
