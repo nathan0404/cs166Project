@@ -269,7 +269,7 @@ public class AirlineManagement {
                   System.out.println("MAIN MENU");
                   System.out.println("---------");
 
-                  //**the following functionalities should only be able to be used by Management**
+                //**the following functionalities should only be able to be used by Management**
                   System.out.println("1. View Flights");
                   System.out.println("2. View Flight Seats");
                   System.out.println("3. View Flight Status");
@@ -278,6 +278,9 @@ public class AirlineManagement {
                   System.out.println("6. View Customer Info");
                   System.out.println("7. View Plane Info");
                   System.out.println("8. View Repairs History");
+                  System.out.println("9. View Plane Repair History");
+                  System.out.println("10. View Flight Seat Statistics");
+                  System.out.println(".........................");
                   System.out.println(".........................");
 
                   //**the following functionalities should only be able to be used by customers**
