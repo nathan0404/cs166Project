@@ -282,16 +282,16 @@ public class AirlineManagement {
                 System.out.println(".........................");
 
                 //**the following functionalities should only be able to be used by customers**
-                System.out.println("10. Search Flights (Customer)");
-                System.out.println("11. Find Ticket Cost (Customer)");
-                System.out.println("12. Find Airplane Type (Customer)");
-                System.out.println("13. Make Reservation (Customer)");
+                System.out.println("11. Search Flights (Customer)");
+                System.out.println("12. Find Ticket Cost (Customer)");
+                System.out.println("13. Find Airplane Type (Customer)");
+                System.out.println("14. Make Reservation (Customer)");
                 //**the following functionalities should only be able to be used by Maintenance Staff**
-                System.out.println("14. List Repairs by Plane and Date Range (Maintenance Staff)");
-                System.out.println("15. List Maintenance Requests by Pilot (Maintenance Staff)");
-                System.out.println("16. Log Repair (Maintenance Staff)");
+                System.out.println("15. List Repairs by Plane and Date Range (Maintenance Staff)");
+                System.out.println("16. List Maintenance Requests by Pilot (Maintenance Staff)");
+                System.out.println("17. Log Repair (Maintenance Staff)");
                 //**the following functionalities should only be able to be used by Pilots**
-                System.out.println("17. Make Maintenance Request (Pilot)");
+                System.out.println("18. Make Maintenance Request (Pilot)");
                 System.out.println(".........................");
                 System.out.println(".........................");
 
