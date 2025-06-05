@@ -282,16 +282,16 @@ public class AirlineManagement {
                 System.out.println(".........................");
 
                 //**the following functionalities should only be able to be used by customers**
-                System.out.println("11. Search Flights (Customer)");
-                System.out.println("12. Find Ticket Cost (Customer)");
-                System.out.println("13. Find Airplane Type (Customer)");
-                System.out.println("14. Make Reservation (Customer)");
+                System.out.println("11. Search Flights");
+                System.out.println("12. Find Ticket Cost");
+                System.out.println("13. Find Airplane Type");
+                System.out.println("14. Make Reservation");
                 //**the following functionalities should only be able to be used by Maintenance Staff**
-                System.out.println("15. List Repairs by Plane and Date Range (Maintenance Staff)");
-                System.out.println("16. List Maintenance Requests by Pilot (Maintenance Staff)");
-                System.out.println("17. Log Repair (Maintenance Staff)");
+                System.out.println("15. List Repairs by Plane and Date Range");
+                System.out.println("16. List Maintenance Requests by Pilot");
+                System.out.println("17. Log Repair");
                 //**the following functionalities should only be able to be used by Pilots**
-                System.out.println("18. Make Maintenance Request (Pilot)");
+                System.out.println("18. Make Maintenance Request");
                 System.out.println(".........................");
                 System.out.println(".........................");
 
@@ -314,6 +314,7 @@ public class AirlineManagement {
                    case 15: feature15(esql); break;
                    case 16: feature16(esql); break;
                    case 17: feature17(esql); break;
+                   case 18: feature18(esql); break;
                    case 20: usermenu = false; break;
                    default : System.out.println("Unrecognized choice!"); break;
                 }
