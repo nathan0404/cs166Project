@@ -365,13 +365,51 @@ public class AirlineManagement {
     * @return User login or null is the user does not exist
     **/
    public static String LogIn(AirlineManagement esql){
-      return null;
+      String input = "hi";
+      /* 
+      String input;
+      do {
+         System.out.println("\nEnter your name:");
+         try { // read the String, parse it and break.
+            input = in.readLine();
+            break;
+         }catch (Exception e) {
+            System.out.println("Your input is invalid!");
+            continue;
+         }//end try
+      }while (true);
+      System.out.println("login successful");
+      return input; */
+      return input;
    }//end
 
 // Rest of the functions definition go in here
 
-   public static void feature1(AirlineManagement esql) {}
-   public static void feature2(AirlineManagement esql) {}
+   public static void feature1(AirlineManagement esql) {
+      try{
+         String query = "SELECT * FROM Flight";
+         System.out.println (esql.executeQueryAndPrintResult(query));
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
+   public static void feature2(AirlineManagement esql) {
+      try{
+         
+         System.out.println("Enter flight number in format (F***):");
+         String FlightNumber = in.readLine();
+         
+         System.out.println("Enter flight date in format (5/5/25):");
+         String Date = in.readLine();
+         
+         String query = "SELECT SeatsTotal, SeatsSold FROM FlightInstance " +
+                     "WHERE FlightNumber = '" + FlightNumber + "' AND FlightDate = '" + Date + "'";
+
+         System.out.println (esql.executeQueryAndPrintResult(query));
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+   }
    public static void feature3(AirlineManagement esql) {}
    public static void feature4(AirlineManagement esql) {}
    public static void feature5(AirlineManagement esql) {}
