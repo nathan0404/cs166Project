@@ -264,60 +264,63 @@ public class AirlineManagement {
                default : System.out.println("Unrecognized choice!"); break;
             }//end switch
             if (authorisedUser != null) {
-              boolean usermenu = true;
-              while(usermenu) {
-                System.out.println("MAIN MENU");
-                System.out.println("---------");
+               boolean usermenu = true;
+               while(usermenu) {
+                  System.out.println("MAIN MENU");
+                  System.out.println("---------");
 
-                //**the following functionalities should only be able to be used by Management**
-                System.out.println("1. View Flights");
-                System.out.println("2. View Flight Seats");
-                System.out.println("3. View Flight Status");
-                System.out.println("4. View Flights of the day");  
-                System.out.println("5. View Full Order ID History");
-                System.out.println("6. View Customer Info");
-                System.out.println("7. View Plane Info");
-                System.out.println("8. View Repairs History");
-                System.out.println(".........................");
-                System.out.println(".........................");
+                  //**the following functionalities should only be able to be used by Management**
+                  System.out.println("1. View Flights");
+                  System.out.println("2. View Flight Seats");
+                  System.out.println("3. View Flight Status");
+                  System.out.println("4. View Flights of the day");  
+                  System.out.println("5. View Full Order ID History");
+                  System.out.println("6. View Customer Info");
+                  System.out.println("7. View Plane Info");
+                  System.out.println("8. View Repairs History");
+                  System.out.println(".........................");
 
-                //**the following functionalities should only be able to be used by customers**
-                System.out.println("11. Search Flights");
-                System.out.println("12. Find Ticket Cost");
-                System.out.println("13. Find Airplane Type");
-                System.out.println("14. Make Reservation");
-                //**the following functionalities should only be able to be used by Maintenance Staff**
-                System.out.println("15. List Repairs by Plane and Date Range");
-                System.out.println("16. List Maintenance Requests by Pilot");
-                System.out.println("17. Log Repair");
-                //**the following functionalities should only be able to be used by Pilots**
-                System.out.println("18. Make Maintenance Request");
-                System.out.println(".........................");
-                System.out.println(".........................");
+                  //**the following functionalities should only be able to be used by customers**
+                  System.out.println("11. Search Flights");
+                  System.out.println("12. Find Ticket Cost");
+                  System.out.println("13. Find Airplane Type");
+                  System.out.println("14. Make Reservation");
+                  System.out.println(".........................");
 
-                System.out.println("20. Log out");
-                switch (readChoice()){
-                   case 1: feature1(esql); break;
-                   case 2: feature2(esql); break;
-                   case 3: feature3(esql); break;
-                   case 4: feature4(esql); break;
-                   case 5: feature5(esql); break;
-                   case 6: feature6(esql); break;
-                   case 7: feature7(esql); break;
-                   case 8: feature8(esql); break;
-                   case 9: feature9(esql); break;
-                   case 10: feature10(esql); break;
-                   case 11: feature11(esql); break;
-                   case 12: feature12(esql); break;
-                   case 13: feature13(esql); break;
-                   case 14: feature14(esql); break;
-                   case 15: feature15(esql); break;
-                   case 16: feature16(esql); break;
-                   case 17: feature17(esql); break;
-                   case 18: feature18(esql); break;
-                   case 20: usermenu = false; break;
-                   default : System.out.println("Unrecognized choice!"); break;
-                }
+                  //**the following functionalities should only be able to be used by Maintenance Staff**
+                  System.out.println("15. List Repairs by Plane and Date Range");
+                  System.out.println("16. List Maintenance Requests by Pilot");
+                  System.out.println("17. Log Repair");
+                  System.out.println(".........................");
+
+                  //**the following functionalities should only be able to be used by Pilots**
+                  System.out.println("18. Make Maintenance Request");
+                  System.out.println(".........................");
+                  System.out.println(".........................");
+
+                  System.out.println("20. Log out");
+                  switch (readChoice()){
+                     case 1: feature1(esql); break;
+                     case 2: feature2(esql); break;
+                     case 3: feature3(esql); break;
+                     case 4: feature4(esql); break;
+                     case 5: feature5(esql); break;
+                     case 6: feature6(esql); break;
+                     case 7: feature7(esql); break;
+                     case 8: feature8(esql); break;
+                     case 9: feature9(esql); break;
+                     case 10: feature10(esql); break;
+                     case 11: feature11(esql); break;
+                     case 12: feature12(esql); break;
+                     case 13: feature13(esql); break;
+                     case 14: feature14(esql); break;
+                     case 15: feature15(esql); break;
+                     case 16: feature16(esql); break;
+                     case 17: feature17(esql); break;
+                     case 18: feature18(esql); break;
+                     case 20: usermenu = false; break;
+                     default : System.out.println("Unrecognized choice!"); break;
+                  }
               }
             }
          }//end while
@@ -396,9 +399,7 @@ public class AirlineManagement {
 
 // Rest of the functions definition go in here
 /*1. Given a flight number, get the flight's schedule for the week
-• A flight may be scheduled on multiple days in a week
-10. Given a flight and a range of date (start date, end date), show the statistics of the flight:
-number of days the flight departed and arrived, number of sold and unsold tickets */
+• A flight may be scheduled on multiple days in a week */
    public static void feature1(AirlineManagement esql) {
       try{
          String query = "SELECT * FROM Flight";
