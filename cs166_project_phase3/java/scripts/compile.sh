@@ -1,11 +1,12 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# This gets us to the project root, one level above "java"
+ROOT="$DIR/.."
 
-# compile the java program
-javac -d $DIR/../classes $DIR/../src/AirlineManagement.java
+# Make sure bin folder exists
+mkdir -p "$ROOT/bin"
 
-#run the java program
-#Use your database name, port number and login
-java -cp $DIR/../classes:$DIR/../lib/pg73jdbc3.jar AirlineManagement $USER"_project_phase_3_DB" $PGPORT $USER
-
+# Compile
+javac -cp "$ROOT/lib/lanterna-3.1.3.jar:$ROOT/lib/pg73jdbc3.jar:$ROOT/src" \
+      -d "$ROOT/bin" "$ROOT/src/"*.java

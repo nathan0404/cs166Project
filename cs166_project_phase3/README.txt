@@ -7,3 +7,7 @@
 * To run the java program use the following script: 
     source java/scripts/compile.sh  
 
+
+source java/scripts/run.sh gui
+
+javac -cp java/lib/lanterna-3.1.1.jar:java/src java/src/LanternaUI.java java/src/AirlineManagement.java

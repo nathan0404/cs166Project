@@ -227,14 +227,25 @@ public class AirlineManagement {
     * @param args the command line arguments this inclues the <mysql|pgsql> <login file>
     */
    public static void main (String[] args) {
-      if (args.length != 3) {
-         System.err.println (
-            "Usage: " +
-            "java [-classpath <classpath>] " +
-            AirlineManagement.class.getName () +
-            " <dbname> <port> <user>");
+      if (args.length == 1 && args[0].equals("gui")) {
+         try {
+            AirlineManagement esql = new AirlineManagement("nmats016_project_phase_3_DB", "28688", "nmats016", "");
+            LanternaUI.start(esql);  // pass your database connection to the GUI
+            esql.cleanup(); // optional: clean up after GUI closes
+         } catch (Exception e) {
+            System.err.println(e.getMessage());
+         }
          return;
-      }//end if
+      }
+
+   if (args.length != 3) {
+      System.err.println(
+         "Usage: " +
+         "java [-classpath <classpath>] " +
+         AirlineManagement.class.getName() +
+         " <dbname> <port> <user>");
+      return;
+   }
 
       Greeting();
       AirlineManagement esql = null;
@@ -270,18 +281,17 @@ public class AirlineManagement {
                 System.out.println("---------");
 
                 //**the following functionalities should only be able to be used by Management**
-                System.out.println("1. View Flights");
-                System.out.println("2. View Flight Seats");
-                System.out.println("3. View Flight Status");
-                System.out.println("4. View Flights of the day");  
-                System.out.println("5. View Full Order ID History");
-                System.out.println("6. View Customer Info");
-                System.out.println("7. View Plane Info");
-                System.out.println("8. View Technician Repair History");
-                System.out.println("9. View Plane Repair History");
-                System.out.println("10. View Flight Seat Statistics");
-                System.out.println(".........................");
-                System.out.println(".........................");
+                  System.out.println("1. View Flights");
+                  System.out.println("2. View Flight Seats");
+                  System.out.println("3. View Flight Status");
+                  System.out.println("4. View Flights of the day");  
+                  System.out.println("5. View Full Order ID History");
+                  System.out.println("6. View Customer Info");
+                  System.out.println("7. View Plane Info");
+                  System.out.println("8. View Repairs History");
+                  System.out.println("9. View Plane Repair History");
+                  System.out.println("10. View Flight Seat Statistics");
+                  System.out.println(".........................");
 
                 //**the following functionalities should only be able to be used by customers**
                 System.out.println("10. Search Flights");
