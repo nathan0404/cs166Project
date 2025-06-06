@@ -1,0 +1,7 @@
+Username,Password,FirstName,LastName,Role
+customer,a,Customer,View,Customer
+management,a,Management,View,Management
+maintenance,a,Maintenance,View,Maintenance
+pilot,a,Pilot,View,Pilot
+nathan,a,Nathan,Matsuo,Goat
+steven,a,Steven,Vu,Goat
