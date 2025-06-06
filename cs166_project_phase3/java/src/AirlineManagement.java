@@ -552,7 +552,12 @@ public class AirlineManagement {
 • A flight may be scheduled on multiple days in a week */
    public static void feature1(AirlineManagement esql) {
       try{
-         String query = "SELECT * FROM Flight";
+         System.out.println("Enter flight number in format (F100):");
+         String FlightNumber = in.readLine();
+
+         String query = "SELECT ScheduleID,FlightNumber,DayOfWeek,DepartureTime,ArrivalTime FROM Schedule " + 
+         "WHERE FlightNumber = '" + FlightNumber + "'";
+
          esql.executeQueryAndPrintResult(query);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -562,7 +567,7 @@ public class AirlineManagement {
 sold */
    public static void feature2(AirlineManagement esql) {
       try{
-         System.out.println("Enter flight number in format (F***):");
+         System.out.println("Enter flight number in format (F100):");
          String FlightNumber = in.readLine();
          
          System.out.println("Enter flight date in format (5/5/25):");
@@ -580,7 +585,7 @@ sold */
    /*3. Given a flight and date, find whether (1) the flight departed on time, and (2) arrived on time */
    public static void feature3(AirlineManagement esql) {
       try{
-       System.out.println("Enter flight number in format (F***):");
+       System.out.println("Enter flight number in format (F100):");
          String FlightNumber = in.readLine();
          
          System.out.println("Enter flight date in format (5/5/25):");
@@ -616,11 +621,11 @@ sold */
 waiting list, (3) actually flew on the flight (for flights already completed)  */
    public static void feature5(AirlineManagement esql) {
       try{
-       System.out.println("Enter flight number in format (F***):");
-         String FlightNumber = "F100"; //in.readLine();
+       System.out.println("Enter flight number in format (F100):");
+         String FlightNumber = in.readLine();
          
          System.out.println("Enter flight date in format (5/5/25):");
-         String Date = "5/5/25"; //in.readLine();
+         String Date = in.readLine();
          
          String query = "SELECT ReservationID,CustomerID,Status FROM Reservation " +
                "WHERE FlightInstanceID = (" +
@@ -638,7 +643,7 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature6(AirlineManagement esql) {
       try{
        System.out.println("Enter a Reservation number in format (R0001):");
-         String ReservationNum = "R0001"; //in.readLine();
+         String ReservationNum = in.readLine();
          
          String query = "SELECT * FROM Customer " +
                "WHERE CustomerID = (" +
@@ -655,7 +660,7 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature7(AirlineManagement esql) {
       try{
        System.out.println("Enter a Plane number in format (PL001):");
-         String PlaneNum = "PL001"; //in.readLine();
+         String PlaneNum = in.readLine();
          
          String query = "SELECT Make,Model,Year,LastRepairDate FROM Plane " +
                "WHERE PlaneID = '" + PlaneNum + "'";
@@ -669,7 +674,7 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature8(AirlineManagement esql) {
       try{
        System.out.println("Enter a Technician ID number in format (T001):");
-         String TechnicianID = "T001"; //in.readLine();
+         String TechnicianID = in.readLine();
          
          String query = "SELECT RepairID,PlaneID,RepairCode,RepairDate FROM Repair " +
                "WHERE TechnicianID = '" + TechnicianID + "'";
@@ -683,13 +688,13 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
   public static void feature9(AirlineManagement esql) {
    try{
       System.out.println("Enter a Plane ID number in format (PL001):");
-      String PlaneID = "PL001"; //in.readLine();
+      String PlaneID = in.readLine();
 
-      System.out.println("Enter a Start Date in format (2025-04-09):");
-      String StartDate = "2025-04-03"; //in.readLine();
+      System.out.println("Enter a Start Date in format (2025-04-03):");
+      String StartDate = in.readLine();
 
       System.out.println("Enter a End Date in format (2025-04-09):");
-      String EndDate = "2025-04-10"; //in.readLine();
+      String EndDate = in.readLine();
       
       String query = "SELECT RepairID,RepairCode,RepairDate FROM Repair " +
             "WHERE PlaneID = '" + PlaneID + "' " +
@@ -706,13 +711,13 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature10(AirlineManagement esql) {
       try{
          System.out.println("Enter a Plane ID number in format (F100):");
-         String FlightNumber = "F100"; //in.readLine();
+         String FlightNumber = in.readLine();
 
          System.out.println("Enter a Start Date in format (5/5/25):");
-         String StartDate = "5/5/25"; //in.readLine();
+         String StartDate = in.readLine();
 
-         System.out.println("Enter a End Date in format (5/5/25):");
-         String EndDate = "6/1/25"; //in.readLine();
+         System.out.println("Enter a End Date in format (6/1/25):");
+         String EndDate = in.readLine();
          
          String query = "SELECT " +
                   "COUNT(CASE WHEN DepartedOnTime IS TRUE THEN 1 END) AS departed_on_time, " + 
@@ -731,11 +736,11 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature11(AirlineManagement esql) {
        // Customer: Given a destination and departure city, find all flights on a given date
        try {
-           System.out.println("Enter Departure City:");
+           System.out.println("Enter Departure City (New York):");
            String depCity = in.readLine();
-           System.out.println("Enter Destination City:");
+           System.out.println("Enter Destination City (Miami):");
            String arrCity = in.readLine();
-           System.out.println("Enter Date (YYYY-MM-DD):");
+           System.out.println("Enter Date (5/5/25):");
            String date = in.readLine();
            String query = "SELECT F.FlightNumber, S.DepartureTime, S.ArrivalTime, FI.NumOfStops, " +
                "ROUND(100.0 * SUM(CASE WHEN FI.DepartedOnTime AND FI.ArrivedOnTime THEN 1 ELSE 0 END) / COUNT(*), 2) AS OnTimePercentage " +
@@ -755,7 +760,7 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature12(AirlineManagement esql) {
        // Customer: Given a flight number, find all ticket costs for that flight number
        try {
-           System.out.println("Enter Flight Number (e.g., F100):");
+           System.out.println("Enter Flight Number (F100):");
            String flightNum = in.readLine();
            String query = "SELECT FlightDate, TicketCost FROM FlightInstance WHERE FlightNumber = '" + flightNum + "'";
            int count = esql.executeQueryAndPrintResult(query);
@@ -769,7 +774,7 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature13(AirlineManagement esql) {
        // Customer: Given a flight number, find the airplane type (make and model)
        try {
-           System.out.println("Enter Flight Number (e.g., F100):");
+           System.out.println("Enter Flight Number (F100):");
            String flightNum = in.readLine();
            String query = "SELECT P.Make, P.Model FROM Flight F JOIN Plane P ON F.PlaneID = P.PlaneID WHERE F.FlightNumber = '" + flightNum + "'";
            esql.executeQueryAndPrintResult(query);
@@ -780,11 +785,11 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature14(AirlineManagement esql) {
        // Customer: Make a reservation for a flight (and get on the waitlist if full)
        try {
-           System.out.println("Enter Customer ID:");
+           System.out.println("Enter Customer ID (1):");
            String customerID = in.readLine();
-           System.out.println("Enter Flight Number (e.g., F100):");
+           System.out.println("Enter Flight Number (F100):");
            String flightNum = in.readLine();
-           System.out.println("Enter Date (YYYY-MM-DD):");
+           System.out.println("Enter Date (5/5/25):");
            String date = in.readLine();
            // Find the FlightInstanceID
            String findInstance = "SELECT FlightInstanceID, SeatsTotal, SeatsSold FROM FlightInstance WHERE FlightNumber = '" + flightNum + "' AND FlightDate = '" + date + "'";
@@ -810,11 +815,11 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature15(AirlineManagement esql) {
        // Maintenance Staff: Given a plane ID and a date range, list all the dates and codes for repairs performed
        try {
-           System.out.println("Enter Plane ID (e.g., PL001):");
+           System.out.println("Enter Plane ID (PL001):");
            String planeID = in.readLine();
-           System.out.println("Enter Start Date (YYYY-MM-DD):");
+           System.out.println("Enter Start Date (5/5/25):");
            String startDate = in.readLine();
-           System.out.println("Enter End Date (YYYY-MM-DD):");
+           System.out.println("Enter End Date (6/1/25):");
            String endDate = in.readLine();
            String query = "SELECT RepairDate, RepairCode FROM Repair WHERE PlaneID = '" + planeID + "' AND RepairDate BETWEEN '" + startDate + "' AND '" + endDate + "'";
            esql.executeQueryAndPrintResult(query);
@@ -825,7 +830,7 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature16(AirlineManagement esql) {
        // Maintenance Staff: Given a pilot ID, list all maintenance requests made by the pilot
        try {
-           System.out.println("Enter Pilot ID (e.g., P001):");
+           System.out.println("Enter Pilot ID (P001):");
            String pilotID = in.readLine();
            String query = "SELECT PlaneID, RepairCode, RequestDate FROM MaintenanceRequest WHERE PilotID = '" + pilotID + "'";
            int count = esql.executeQueryAndPrintResult(query);
@@ -839,13 +844,13 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature17(AirlineManagement esql) {
        // Maintenance Staff: After each repair, make an entry showing plane ID, repair code, and date of repair
        try {
-           System.out.println("Enter Plane ID (e.g., PL001):");
+           System.out.println("Enter Plane ID (PL001):");
            String planeID = in.readLine();
-           System.out.println("Enter Repair Code:");
+           System.out.println("Enter Repair Code (RC001):");
            String repairCode = in.readLine();
-           System.out.println("Enter Repair Date (YYYY-MM-DD):");
+           System.out.println("Enter Repair Date (5/5/25):");
            String repairDate = in.readLine();
-           System.out.println("Enter Technician ID (e.g., T001):");
+           System.out.println("Enter Technician ID (T001):");
            String techID = in.readLine();
            // Generate a unique RepairID
            String getMaxId = "SELECT COALESCE(MAX(RepairID), 0) + 1 FROM Repair";
@@ -861,13 +866,13 @@ waiting list, (3) actually flew on the flight (for flights already completed)  *
    public static void feature18(AirlineManagement esql) {
        // Pilot: Make maintenance request listing plane ID, repair code requested, and date of request
        try {
-           System.out.println("Enter Plane ID (e.g., PL001):");
+           System.out.println("Enter Plane ID (PL001):");
            String planeID = in.readLine();
-           System.out.println("Enter Repair Code:");
+           System.out.println("Enter Repair Code (RC001):");
            String repairCode = in.readLine();
-           System.out.println("Enter Request Date (YYYY-MM-DD):");
+           System.out.println("Enter Request Date (5/5/25):");
            String requestDate = in.readLine();
-           System.out.println("Enter Pilot ID (e.g., P001):");
+           System.out.println("Enter Pilot ID (P001):");
            String pilotID = in.readLine();
            // Generate a unique RequestID
            String getMaxId = "SELECT COALESCE(MAX(RequestID), 0) + 1 FROM MaintenanceRequest";
