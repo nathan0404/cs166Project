@@ -9,3 +9,10 @@ CREATE INDEX idx_repair_planeid_date ON Repair(PlaneID, RepairDate);
 
 -- Index to speed up searching for maintenance requests by pilot
 CREATE INDEX idx_maintreq_pilotid ON MaintenanceRequest(PilotID);
+
+-- Added more indexes for query optimization tests
+CREATE INDEX idx_schedule_flightnumber ON Schedule(FlightNumber);
+CREATE INDEX idx_schedule_dayofweek ON Schedule(DayOfWeek);
+CREATE INDEX idx_reservation_flightinstanceid ON Reservation(FlightInstanceID);
+CREATE INDEX idx_repair_technicianid ON Repair(TechnicianID);
+CREATE INDEX idx_maintreq_planeid ON MaintenanceRequest(PlaneID);
