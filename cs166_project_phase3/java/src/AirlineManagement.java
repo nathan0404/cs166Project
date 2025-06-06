@@ -228,25 +228,14 @@ public class AirlineManagement {
     * @param args the command line arguments this inclues the <mysql|pgsql> <login file>
     */
    public static void main (String[] args) {
-      if (args.length == 1 && args[0].equals("gui")) {
-         try {
-            AirlineManagement esql = new AirlineManagement("nmats016_project_phase_3_DB", "28688", "nmats016", "");
-            LanternaUI.start(esql);  // pass your database connection to the GUI
-            esql.cleanup(); // optional: clean up after GUI closes
-         } catch (Exception e) {
-            System.err.println(e.getMessage());
-         }
+      if (args.length != 3) {
+         System.err.println (
+            "Usage: " +
+            "java [-classpath <classpath>] " +
+            AirlineManagement.class.getName () +
+            " <dbname> <port> <user>");
          return;
-      }
-
-   if (args.length != 3) {
-      System.err.println(
-         "Usage: " +
-         "java [-classpath <classpath>] " +
-         AirlineManagement.class.getName() +
-         " <dbname> <port> <user>");
-      return;
-   }
+      }//end if
 
       Greeting();
       AirlineManagement esql = null;
@@ -507,7 +496,6 @@ public class AirlineManagement {
             String FirstName = result.get(0).get(2);
             String LastName = result.get(0).get(3);
             String Role = result.get(0).get(4);
-            System.out.println(Role);
 
             if (!result.isEmpty()) {
                   System.out.println("Login successful!");
