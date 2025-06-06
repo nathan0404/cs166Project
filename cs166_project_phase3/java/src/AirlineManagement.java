@@ -599,8 +599,7 @@ sold */
       }
    }
 
-   /*4. Given a date, get all flights scheduled on that day 
-    * 
+   /*4. Given a date, get all flights scheduled on that day  
     addd another query looking for past flights too
    */
    public static void feature4(AirlineManagement esql) {
