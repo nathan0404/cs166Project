@@ -128,6 +128,7 @@ public class AirlineManagement {
       return rowCount;
    }//end executeQuery
 
+
    /**
     * Method to execute an input query SQL instruction (i.e. SELECT).  This
     * method issues the query to the DBMS and returns the results as
@@ -256,75 +257,169 @@ public class AirlineManagement {
             System.out.println("1. Create user");
             System.out.println("2. Log in");
             System.out.println("9. < EXIT");
-            String authorisedUser = null;
+            String Role = null;
             switch (readChoice()){
                case 1: CreateUser(esql); break;
-               case 2: authorisedUser = LogIn(esql); break;
+               case 2: Role = LogIn(esql); break;
                case 9: keepon = false; break;
                default : System.out.println("Unrecognized choice!"); break;
             }//end switch
-            if (authorisedUser != null) {
-               boolean usermenu = true;
-               while(usermenu) {
-                  System.out.println("MAIN MENU");
-                  System.out.println("---------");
-
-                //**the following functionalities should only be able to be used by Management**
-                  System.out.println("1. View Flights");
-                  System.out.println("2. View Flight Seats");
-                  System.out.println("3. View Flight Status");
-                  System.out.println("4. View Flights of the day");  
-                  System.out.println("5. View Full Order ID History");
-                  System.out.println("6. View Customer Info");
-                  System.out.println("7. View Plane Info");
-                  System.out.println("8. View Repairs History");
-                  System.out.println("9. View Plane Repair History");
-                  System.out.println("10. View Flight Seat Statistics");
-                  System.out.println(".........................");
-                  System.out.println(".........................");
-
-                  //**the following functionalities should only be able to be used by customers**
-                  System.out.println("11. Search Flights");
-                  System.out.println("12. Find Ticket Cost");
-                  System.out.println("13. Find Airplane Type");
-                  System.out.println("14. Make Reservation");
-                  System.out.println(".........................");
-
-                  //**the following functionalities should only be able to be used by Maintenance Staff**
-                  System.out.println("15. List Repairs by Plane and Date Range");
-                  System.out.println("16. List Maintenance Requests by Pilot");
-                  System.out.println("17. Log Repair");
-                  System.out.println(".........................");
-
-                  //**the following functionalities should only be able to be used by Pilots**
-                  System.out.println("18. Make Maintenance Request");
-                  System.out.println(".........................");
-                  System.out.println(".........................");
-
-                  System.out.println("20. Log out");
-                  switch (readChoice()){
-                     case 1: feature1(esql); break;
-                     case 2: feature2(esql); break;
-                     case 3: feature3(esql); break;
-                     case 4: feature4(esql); break;
-                     case 5: feature5(esql); break;
-                     case 6: feature6(esql); break;
-                     case 7: feature7(esql); break;
-                     case 8: feature8(esql); break;
-                     case 9: feature9(esql); break;
-                     case 10: feature10(esql); break;
-                     case 11: feature11(esql); break;
-                     case 12: feature12(esql); break;
-                     case 13: feature13(esql); break;
-                     case 14: feature14(esql); break;
-                     case 15: feature15(esql); break;
-                     case 16: feature16(esql); break;
-                     case 17: feature17(esql); break;
-                     case 18: feature18(esql); break;
-                     case 20: usermenu = false; break;
-                     default : System.out.println("Unrecognized choice!"); break;
+            if (Role != null) {
+               if(Role.equals("Customer")) {
+                  boolean customermenu = true;
+                  while(customermenu) {
+                     System.out.println("Welcome Customer");
+                     System.out.println("---------");
+                     //**the following functionalities should only be able to be used by customers**
+                     System.out.println("1. Search Flights");
+                     System.out.println("2. Find Ticket Cost");
+                     System.out.println("3. Find Airplane Type");
+                     System.out.println("4. Make Reservation");
+                     System.out.println(".........................");
+                     System.out.println("20. Log out");
+                     switch (readChoice()){
+                        case 1: feature11(esql); break;
+                        case 2: feature12(esql); break;
+                        case 3: feature13(esql); break;
+                        case 4: feature14(esql); break;
+                        case 20: customermenu = false; break;
+                        default : System.out.println("Unrecognized choice!"); break;
+                     }
                   }
-              }
+               }
+               else if(Role.equals("Management")) {
+                  boolean Managementmenu = true;
+                  while(Managementmenu) {
+                     System.out.println("Welcome Management");
+                     System.out.println("---------");
+                     //**the following functionalities should only be able to be used by Management**
+                     System.out.println("1. View Flights");
+                     System.out.println("2. View Flight Seats");
+                     System.out.println("3. View Flight Status");
+                     System.out.println("4. View Flights of the day");  
+                     System.out.println("5. View Full Order ID History");
+                     System.out.println("6. View Customer Info");
+                     System.out.println("7. View Plane Info");
+                     System.out.println("8. View Repairs History");
+                     System.out.println("9. View Plane Repair History");
+                     System.out.println("10. View Flight Seat Statistics");
+                     System.out.println(".........................");
+                     System.out.println("20. Log out");
+                     switch (readChoice()){
+                        case 1: feature1(esql); break;
+                        case 2: feature2(esql); break;
+                        case 3: feature3(esql); break;
+                        case 4: feature4(esql); break;
+                        case 5: feature5(esql); break;
+                        case 6: feature6(esql); break;
+                        case 7: feature7(esql); break;
+                        case 8: feature8(esql); break;
+                        case 9: feature9(esql); break;
+                        case 10: feature10(esql); break;
+                        case 20: Managementmenu = false; break;
+                        default : System.out.println("Unrecognized choice!"); break;
+                     }
+                  }
+               }
+               else if(Role.equals("Maintenance")) {
+                  boolean Maintenancemenu = true;
+                  while(Maintenancemenu) {
+                     System.out.println("Welcome Maintenance");
+                     System.out.println("---------");
+                     //**the following functionalities should only be able to be used by Maintenance Staff**
+                     System.out.println("1. List Repairs by Plane and Date Range");
+                     System.out.println("2. List Maintenance Requests by Pilot");
+                     System.out.println("3. Log Repair");
+                     System.out.println(".........................");
+                     System.out.println("20. Log out");
+                     switch (readChoice()){
+                        case 1: feature15(esql); break;
+                        case 2: feature16(esql); break;
+                        case 3: feature17(esql); break;
+                        case 20: Maintenancemenu = false; break;
+                        default : System.out.println("Unrecognized choice!"); break;
+                     }
+                  }
+               }
+               else if(Role.equals("Pilot")) {
+                  boolean Pilotmenu = true;
+                  while(Pilotmenu) {
+                     System.out.println("Welcome Pilot");
+                     System.out.println("---------");
+                     //**the following functionalities should only be able to be used by Pilots**
+                     System.out.println("1. Make Maintenance Request");
+                     System.out.println(".........................");
+                     System.out.println("20. Log out");
+                     switch (readChoice()){
+                        case 1: feature1(esql); break;
+                        case 20: Pilotmenu = false; break;
+                        default : System.out.println("Unrecognized choice!"); break;
+                     }
+                  }
+               }
+               else if(Role.equals("Goat")) {
+                  boolean Goatmenu = true;
+                  while(Goatmenu) {
+                     System.out.println("Welcome The Goat");
+                     System.out.println("---------");
+                    //**the following functionalities should only be able to be used by Management**
+                     System.out.println("1. View Flights");
+                     System.out.println("2. View Flight Seats");
+                     System.out.println("3. View Flight Status");
+                     System.out.println("4. View Flights of the day");  
+                     System.out.println("5. View Full Order ID History");
+                     System.out.println("6. View Customer Info");
+                     System.out.println("7. View Plane Info");
+                     System.out.println("8. View Repairs History");
+                     System.out.println("9. View Plane Repair History");
+                     System.out.println("10. View Flight Seat Statistics");
+                     System.out.println(".........................");
+
+                     //**the following functionalities should only be able to be used by customers**
+                     System.out.println("11. Search Flights");
+                     System.out.println("12. Find Ticket Cost");
+                     System.out.println("13. Find Airplane Type");
+                     System.out.println("14. Make Reservation");
+                     System.out.println(".........................");
+
+                     //**the following functionalities should only be able to be used by Maintenance Staff**
+                     System.out.println("15. List Repairs by Plane and Date Range");
+                     System.out.println("16. List Maintenance Requests by Pilot");
+                     System.out.println("17. Log Repair");
+                     System.out.println(".........................");
+
+                     //**the following functionalities should only be able to be used by Pilots**
+                     System.out.println("18. Make Maintenance Request");
+                     System.out.println(".........................");
+
+                     System.out.println("20. Log out");
+                     switch (readChoice()){
+                        case 1: feature1(esql); break;
+                        case 2: feature2(esql); break;
+                        case 3: feature3(esql); break;
+                        case 4: feature4(esql); break;
+                        case 5: feature5(esql); break;
+                        case 6: feature6(esql); break;
+                        case 7: feature7(esql); break;
+                        case 8: feature8(esql); break;
+                        case 9: feature9(esql); break;
+                        case 10: feature10(esql); break;
+                        case 11: feature11(esql); break;
+                        case 12: feature12(esql); break;
+                        case 13: feature13(esql); break;
+                        case 14: feature14(esql); break;
+                        case 15: feature15(esql); break;
+                        case 16: feature16(esql); break;
+                        case 17: feature17(esql); break;
+                        case 18: feature18(esql); break;
+                        case 20: Goatmenu = false; break;
+                        default : System.out.println("Unrecognized choice!"); break;
+                     }
+                  }
+               }
+               else {
+                  break;
+               }
             }
          }//end while
       }catch(Exception e) {
@@ -382,22 +477,40 @@ public class AirlineManagement {
     * @return User login or null is the user does not exist
     **/
    public static String LogIn(AirlineManagement esql){
-      String input = "hi";
-      /* 
+      //String input = "hi";
       String input;
       do {
-         System.out.println("\nEnter your name:");
          try { // read the String, parse it and break.
-            input = in.readLine();
-            break;
+            System.out.println("\tWARNING INFORMATION SENSITIVE! ");
+            System.out.print("\tEnter your Username: ");
+            String UserName = in.readLine();
+            System.out.print("\tEnter your Password: ");
+            String Password = in.readLine();
+
+            String query = "SELECT * FROM LoginInfo " +
+            "WHERE Username = '" + UserName + "' AND Password = '" + Password + "'";
+
+            String query2 = "SELECT * FROM LoginInfo";
+            List<List<String>> result = esql.executeQueryAndReturnResult(query);
+            
+            String FirstName = result.get(0).get(2);
+            String LastName = result.get(0).get(3);
+            String Role = result.get(0).get(4);
+            System.out.println(Role);
+
+            if (!result.isEmpty()) {
+                  System.out.println("Login successful!");
+                  System.out.println("Greetings user: " + FirstName + " " + LastName);
+                  return Role;
+            } else {
+               System.out.println("Invalid login or password.");
+               return null;
+            }
          }catch (Exception e) {
             System.out.println("Your input is invalid!");
-            continue;
-         }//end try
+            return null;
+         }
       }while (true);
-      System.out.println("login successful");
-      return input; */
-      return input;
    }//end
 
 // Rest of the functions definition go in here

@@ -20,3 +20,4 @@
 
 \copy MaintenanceRequest FROM 'data/MaintenanceRequest.csv' WITH DELIMITER ',' CSV HEADER; 
 
+\copy LoginInfo FROM 'data/LoginInfo.csv' WITH DELIMITER ',' CSV HEADER; 
