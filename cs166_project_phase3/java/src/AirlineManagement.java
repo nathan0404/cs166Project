@@ -252,6 +252,7 @@ public class AirlineManagement {
          boolean keepon = true;
          while(keepon) {
             // These are sample SQL statements
+            System.out.println();
             System.out.println("MAIN MENU");
             System.out.println("---------");
             System.out.println("1. Create user");
@@ -469,6 +470,40 @@ public class AirlineManagement {
     * Creates a new user
     **/
    public static void CreateUser(AirlineManagement esql){
+      try {
+         System.out.println("\tWARNING INPUT INFORMATION IS CASE SENSITIVE! ");
+         System.out.print("\tEnter new username: ");
+         String UserName = in.readLine();
+         System.out.print("\tEnter new password: ");
+         String Password = in.readLine();
+         System.out.print("\tEnter new First Name: ");
+         String FirstName = in.readLine();
+         System.out.print("\tEnter new Last Name: ");
+         String LastName = in.readLine();
+         System.out.println("\tWARNING INPUT INFORMATION IS CASE SENSITIVE! ");
+         System.out.print("\tEnter role (e.g., Customer, Management, Maintenance, Pilot, Goat): ");
+         String Role = in.readLine();
+
+         // Check if the username already exists
+         String checkQuery = "SELECT * FROM LoginInfo WHERE Username = '" + UserName + "'";
+         int existing = esql.executeQuery(checkQuery);
+         if (existing > 0) {
+               System.out.println("Username already exists. Please choose another.");
+               return;
+         }
+
+         String insertQuery = "INSERT INTO LoginInfo (Username,Password,FirstName,LastName,Role) VALUES ('" + 
+         UserName + "', '" + 
+         Password + "', '" + 
+         FirstName + "', '" + 
+         LastName + "', '" + 
+         Role + "')";
+
+         esql.executeUpdate(insertQuery);
+         System.out.println("User created successfully!");
+      } catch (Exception e) {
+         System.err.println("Error creating user: " + e.getMessage());
+      } 
    }//end CreateUser
 
 
@@ -481,7 +516,7 @@ public class AirlineManagement {
       String input;
       do {
          try { // read the String, parse it and break.
-            System.out.println("\tWARNING INFORMATION SENSITIVE! ");
+            System.out.println("\tWARNING INPUT INFORMATION IS CASE SENSITIVE! ");
             System.out.print("\tEnter your Username: ");
             String UserName = in.readLine();
             System.out.print("\tEnter your Password: ");
@@ -498,7 +533,7 @@ public class AirlineManagement {
             String Role = result.get(0).get(4);
 
             if (!result.isEmpty()) {
-                  System.out.println("Login successful!");
+                  System.out.println("Login successful!\n");
                   System.out.println("Greetings user: " + FirstName + " " + LastName);
                   return Role;
             } else {
